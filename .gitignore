@@ -1,0 +1,34 @@
+# Build directories
+bin/
+obj/
+[Bb]uild/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio
+.vs/
+
+# JetBrains Rider
+.idea/
+
+# Logs and temp
+*.log
+*.tlog
+*.tmp
+*.temp
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
+
+# Config (lokal utveckling)
+appsettings.Development.json
+
+# OS-specific
+.DS_Store
+Thumbs.db
