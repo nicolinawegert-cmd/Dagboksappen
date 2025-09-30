@@ -72,7 +72,7 @@ class Program
     static void SearchEntry()
     {
         Console.Write("Ange datum att söka efter (yyyy-MM-dd): ");
-        if (!DateTime.TryParse(Console.ReadLine(), out DateTime date))
+        if (DateTime.TryParse(Console.ReadLine(), out DateTime date))
         {
             var found = diaryEntries.Find(e => e.Date.Date == date.Date);
             if (found != null)
@@ -107,6 +107,7 @@ class Program
                 string json = File.ReadAllText(dataFile);
                 diaryEntries = JsonSerializer.Deserialize<List<DiaryEntry>>(json) ?? new List<DiaryEntry>();
                 Console.WriteLine("Anteckningar inlästa.");
+                ListEntries();
             }
             else
             {
