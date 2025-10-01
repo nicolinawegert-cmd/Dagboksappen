@@ -22,7 +22,8 @@ class Program
             Console.WriteLine("3. Sök anteckning på datum");
             Console.WriteLine("4. Spara till fil");
             Console.WriteLine("5. Läs från fil");
-            Console.WriteLine("6. Avsluta");
+            Console.WriteLine("6. Ta bort en anteckning");
+            Console.WriteLine("7. Avsluta");
 
             string? choice = Console.ReadLine();
 
@@ -33,7 +34,8 @@ class Program
                 case "3": SearchEntry(); break;
                 case "4": SaveToFile(); break;
                 case "5": LoadFromFile(); break;
-                case "6": return;
+                case "6": RemoveEntry(); break;
+                case "7": return;
                 default: Console.WriteLine("Ogiltigt val, försök igen."); break;
             }
         }
@@ -117,6 +119,27 @@ class Program
         catch (Exception ex)
         {
             Console.WriteLine($"Fel vid inläsning av anteckningar: {ex.Message}");
+        }
+    }
+    static void RemoveEntry()
+    {
+        Console.Write("Ange datum för anteckningen att ta bort (yyyy-MM-dd): ");
+        if (DateTime.TryParse(Console.ReadLine(), out DateTime date))
+        {
+            var entry = diaryEntries.Find(e => e.Date.Date == date.Date);
+            if (entry != null)
+            {
+                diaryEntries.Remove(entry);
+                Console.WriteLine("Anteckning borttagen.");
+            }
+            else
+            {
+                Console.WriteLine("Ingen anteckning hittades för det datumet.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Felaktigt datum");
         }
     }
 }
